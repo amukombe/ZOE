@@ -1,0 +1,37 @@
+<div class="depot_form" >
+
+  <% @page_title = 'user | list' %>
+
+  <div>
+    <%= pluralize(@users.size, "users") %> available
+    <%= link_to 'New User', new_user_path %>
+  </div>
+  <% if notice %>
+  <p id="notice" ><%= notice %></p>
+  <% end %>
+  <fieldset>
+    <h1>Listing users</h1>
+
+    <table cellpadding="2">
+      <tr style="font-weight:bold;">
+        <td>Name</td>
+        <td>Role</td>
+        <td>Action</td>
+      </tr>
+
+    <% @users.each do |user| %>
+      <tr style="background:#ccc;">
+        <td><%= user.name %></td>
+        <td><%= user.role.title %></td>
+        <td><%= link_to 'Show', user %> |
+          <%= link_to 'Edit', edit_user_path(user) %> |
+          <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+    </table>
+
+    <br />
+  </fieldset>
+  
+</div>
+<p><%= will_paginate @users %></p>

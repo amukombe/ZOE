@@ -1,0 +1,27 @@
+<h1>Listing sellers</h1>
+
+<table cellpadding="2" cellspacing="2">
+  <tr>
+    <th>Name</th>
+    <th>Address</th>
+    <th>Url</th>
+    <th>Action</th>
+  </tr>
+
+<% @sellers.each do |seller| %>
+  <tr style="background:#ccc;">
+    <td><%= seller.name %></td>
+    <td><%= seller.address %></td>
+    <td><%= seller.url %></td>
+    <td><%= link_to 'Show', seller %> |
+        <%= link_to 'Edit', edit_seller_path(seller) %> |
+        <%= link_to 'Destroy', seller, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Seller', new_seller_path %>
+<p><%= will_paginate @sellers %></p>

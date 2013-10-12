@@ -1,0 +1,24 @@
+<div class="cart_title" >Your Cart</div>
+<table>
+	<tr>
+		<td>Service</td>
+		<td> charge</td>
+		<td class="item_price">Ush 5000</td>
+	</tr>
+	<%= render(cart.line_items) %>
+	<tr class="total_line" >
+		<td colspan="2" >Total</td>
+		<td class="total_cell" ><%= sprintf("Ush %0.0f",cart.total_price) %></td>
+	</tr>
+</table>
+<table style="border:0px;">
+<tr>
+<td>
+<%= button_to "Buy items" , new_order_path, :method => :get, :class=>'button-class' %>
+</td>
+<td>
+<%= button_to 'Empty cart' , cart, :method => :delete,
+:confirm => 'Are you sure you want to empty your cart?', :class=>'button-class' %>
+</td>
+</tr>
+</table>

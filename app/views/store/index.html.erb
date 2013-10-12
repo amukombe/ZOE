@@ -1,0 +1,22 @@
+<% @page_title = 'Available | products' %>
+<% if notice %>
+<p id="notice" ><%= notice %></p>
+<% end %>
+
+<div>
+	<%= pluralize(@products.size, "Items") %> available
+</div>
+click on every item you want to buy
+<h3 style="margin-bottom:10px; color:green; font-weight:bold;" ><%= @catalog.name %> Catalog | <font color="green", size="3"><%= link_to('click to check your cart', :controler=>'store', :action=>'index') %></font>
+</h3>
+<% @products.each do |product| %>
+
+	<div class="manage-supermarkets">
+		<%= image_tag(product.image_url) %>
+		<h3><%= product.title %></h3>
+		<%=sanitize product.description %>
+
+		<%= sprintf("Ush %0.0f", product.price) %>
+		<%= button_to 'Add to Cart' , line_items_path(:product_id => product, :remote=>true), :remote=>true, :class=>'button-class' %>
+	</div>
+<% end %>

@@ -1,0 +1,27 @@
+<% @page_title = 'user | roles' %>
+<div class="depot_form" >
+  <fieldset>
+  <legend>Listing roles</legend>
+
+  <table cellpadding="2">
+    <tr style="font-weight:bold;">
+      <td>Title</td>
+      <td>Action</td>
+    </tr>
+
+  <% @roles.each do |role| %>
+    <tr style="background:#ccc;">
+      <td><%= role.title %></td>
+      <td><%= link_to 'Show', role %> |
+        <%= link_to 'Edit', edit_role_path(role) %> |
+        <%= link_to 'Destroy', role, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </td>
+    </tr style="background:#ccc;">
+  <% end %>
+  </table>
+
+  <br />
+
+  <%= link_to 'New Role', new_role_path %>
+  </fieldset>
+</div>
