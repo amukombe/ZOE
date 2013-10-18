@@ -1,5 +1,6 @@
 class SellersController < ApplicationController
   layout 'user'
+  before_filter :confirm_logged_in
   # GET /sellers
   # GET /sellers.json
   def index

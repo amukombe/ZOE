@@ -1,15 +1,14 @@
 class StoreController < ApplicationController
   layout 'admin'
-  skip_before_filter :authorize
+  
   def index
-  	#@seller = Seller.find(params[:seller_id])
-  	#@products = Product.all.where(:seller_id=>@seller.id)
+  	
 
   	begin
     @catalog = Seller.find(params[:seller_id])
     @seller = current_seller
     seller = Seller.find(params[:seller_id])
-    @products = Product.order.where(:seller_id=>seller.id)
+    @products = Product.order.where(:seller_id=>seller.id).paginate :page=>params[:page], :order=>'created_at desc' , :per_page => 15
   	 
   	@cart = current_cart
   	rescue ActiveRecord::RecordNotFound

@@ -1,23 +1,25 @@
 Supermarket::Application.routes.draw do
   
+  get "access/login"
+
+  get "access/create"
+
+  get "access/menu"
+
+  get "access/destroy"
+
   resources :items
 
 
   get "admin/index"
 
-  get "sessions/new"
+  get "sessions/login"
 
   get "sessions/create"
 
   get "sessions/destroy"
 
-  #get 'admin' => 'admin#index'
-  
-  #controller :sessions do
-    #get 'login' => :new
-    #post 'login' => :create
-    #delete 'logout' => :destroy
-  #end
+
   match 'admin', :to=>"sessions#menu"
 
   resources :roles
@@ -26,7 +28,7 @@ Supermarket::Application.routes.draw do
   resources :users
 
 
-  #get "main/index"
+  get "main/index"
 
   resources :sellers
 
@@ -46,7 +48,7 @@ Supermarket::Application.routes.draw do
   end
   resources :products
 
-  root :to => 'main#index' , :as => 'main'
+  root :to => 'main#index'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

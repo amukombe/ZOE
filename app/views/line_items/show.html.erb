@@ -2,12 +2,17 @@
 
 <p>
   <b>Product:</b>
-  <%= @line_item.product_id %>
+  <%= @line_item.product.title %>
 </p>
 
 <p>
   <b>Cart:</b>
   <%= @line_item.cart_id %>
+</p>
+
+<p>
+  <b>Ordered by:</b>
+  <%= @line_item.order.name %>
 </p>
 
 

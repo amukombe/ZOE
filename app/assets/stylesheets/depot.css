@@ -106,10 +106,10 @@ margin: 0.5em 0;
 	margin-bottom: 20px;
 }
 .manage-supermarkets{
-	width:200px;
+	width:150px;
 	float: left;
 	margin-right: 20px;
-	height: 230px;
+	height: 130px;
 	border: 1px solid black;
 	text-align: center;
 	padding: 5px;
@@ -118,4 +118,10 @@ margin: 0.5em 0;
 #footer{
 	clear: both;
 	background: white;
+}
+.login-flash{
+	border: 1px solid red;
+	text-align: center;
+	font-weight: bold;
+	width: 400px;
 }

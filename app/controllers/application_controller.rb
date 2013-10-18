@@ -20,8 +20,8 @@ class ApplicationController < ActionController::Base
 
 	def confirm_logged_in
 		unless User.find_by_id(session[:user_id])
-		flash[:notice] = "Please log in"
-		redirect_to :controller=>'sessions', :action=>'new'
+		flash[:notice] = "Please you must login"
+		redirect_to :controller=>'access', :action=>'login'
 		end
 	end
 end

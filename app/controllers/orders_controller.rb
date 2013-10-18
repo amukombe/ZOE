@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  skip_before_filter :authorize, :only => [:new, :create]
+  before_filter :confirm_logged_in, :except => [:new, :create]
   # GET /orders
   # GET /orders.json
   layout 'admin'
@@ -21,7 +21,7 @@ class OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @cart = current_cart
-    #@line_item = LineItem.find(params[:id])
+    @line_items = LineItem.find_by_order_id(@order)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -109,4 +109,6 @@ class OrdersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+ 
 end

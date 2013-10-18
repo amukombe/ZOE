@@ -4,19 +4,22 @@
 <% end %>
 
 <div>
-	<%= pluralize(@products.size, "Items") %> available
+	<%= pluralize(@products.size, "Item") %> available
 </div>
 click on every item you want to buy
-<h3 style="margin-bottom:10px; color:green; font-weight:bold;" ><%= @catalog.name %> Catalog | <font color="green", size="3"><%= link_to('click to check your cart', :controler=>'store', :action=>'index') %></font>
+<h3 style="margin-bottom:10px; color:green; font-weight:bold;" ><%= @catalog.name %> Catalog
 </h3>
-<% @products.each do |product| %>
+<div style="width:920px;clear:both;height:480px;">
+	<% @products.each do |product| %>
 
-	<div class="manage-supermarkets">
-		<%= image_tag(product.image_url) %>
-		<h3><%= product.title %></h3>
-		<%=sanitize product.description %>
+		<div class="manage-supermarkets">
+			<%= image_tag(product.image_url, :width=>40, :height=>40) %><br />
+			<%= product.title %><br />
+			<%=sanitize product.description %><br />
 
-		<%= sprintf("Ush %0.0f", product.price) %>
-		<%= button_to 'Add to Cart' , line_items_path(:product_id => product, :remote=>true), :remote=>true, :class=>'button-class' %>
-	</div>
-<% end %>
+			<%= sprintf("Ush %0.0f", product.price) %>
+			<%= button_to 'Add to Cart' , line_items_path(:product_id => product), :class=>'button-class' %>
+		</div>
+	<% end %>
+</div>
+<p><%= will_paginate @products %></p>

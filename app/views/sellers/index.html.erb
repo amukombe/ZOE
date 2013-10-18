@@ -1,4 +1,8 @@
-<h1>Listing sellers</h1>
+<div>
+    <%= pluralize(@sellers.size, "seller") %> available
+    <%= link_to 'New Seller', new_seller_path %>
+  </div>
+<h3>Listing sellers</h3>
 
 <table cellpadding="2" cellspacing="2">
   <tr>
@@ -23,5 +27,4 @@
 
 <br />
 
-<%= link_to 'New Seller', new_seller_path %>
 <p><%= will_paginate @sellers %></p>

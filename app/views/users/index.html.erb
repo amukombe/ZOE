@@ -3,7 +3,7 @@
   <% @page_title = 'user | list' %>
 
   <div>
-    <%= pluralize(@users.size, "users") %> available
+    <%= pluralize(@users.size, "user") %> available
     <%= link_to 'New User', new_user_path %>
   </div>
   <% if notice %>

@@ -1,11 +1,12 @@
 <div class="depot_form" >
-	<% if flash[:alert] %>
-		<p id="notice" >
-			<%= flash[:alert] %>
-		</p>
-	<% end %>
+<% @page_title='User|Login'%>
 
-	<%= form_tag(:action=>'create') do %>
+	<% if notice %>
+		<div class="login-flash">
+		<%= notice %>
+		</div>
+	<% end %>
+	<%= form_tag(:controller=>'access',:action=>'create') do %>
 		<fieldset>
 			<legend>Please Log In</legend>
 			

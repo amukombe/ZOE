@@ -20,8 +20,40 @@
   <%= @order.pay_type %>
 </p>
 <p>
-  <b>Total:</b>
-  <%= @order.total %>
+  
+  <table>
+  <tr>
+      <th>
+        Orders        
+      </th>
+      <th>
+         from 
+      </th>
+      <th><%= @line_items.product.seller.name %></th>
+    </tr>
+  <% @order.line_items.each do |item| %>   
+    <tr>
+      <td>
+        <%= item.quantity %>&times;
+      </td>
+      <td class="item_price">
+        <%= item.product.title %>
+      </td>
+      <td class="item_price"><%= sprintf("Ush %0.1f",item.total_price) %></td>
+    </tr>
+    <% end %>
+    <tr>
+      <td>
+        
+      </td>
+      <td class="item_price", style="border-top:1px solid black; border-top-style:dotted; font-weight:bold;">
+        Total
+      </td>
+      <td class="item_price", style="border-top:1px solid black; border-top-style:dotted; font-weight:bold;">
+         <%= sprintf("Ush %0.1f",@order.total) %>
+      </td>
+    </tr>
+  </table>
 </p>
 <%= link_to 'Edit', edit_order_path(@order) %> |
 <%= link_to 'Back', orders_path %>

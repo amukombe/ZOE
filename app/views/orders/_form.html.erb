@@ -10,7 +10,6 @@
       </ul>
     </div>
   <% end %>
-  <%= f.hidden_field  @cart.total_price %>
   <div class="field">
     <%= f.label :name %> :<br />
     <%= f.text_field :name, :size => 40 %>
@@ -27,6 +26,11 @@
     <%= f.label :pay_type %> :<br />
     <%= f.select :pay_type, Order::PAYMENT_TYPES, :prompt => 'Select a payment method' %>
   </div>
+  <div class="field">
+    <%= f.label :phone_no %> :<br />
+    <%= f.text_field :phone_no %><br />
+  </div
+  <%= f.hidden_field :total, :value=>@cart.total_price %>
   <div class="actions">
     <%= f.submit 'Place Order' %>
   </div>
