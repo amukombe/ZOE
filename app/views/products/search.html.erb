@@ -1,0 +1,41 @@
+<div>search results for '<%= @name %>'</div><div align="right"><%= link_to("<<Back to List",{:controller=>'public', :action=>'list'}, :class=>'back-link') %></div>
+  
+<div><%= pluralize(@products.size, 'product') %> found</div>
+
+<div>
+  <table class="listing" summary="Product list">
+    <tr class="header">
+	  <th>&nbsp;</th>
+	  <th>&nbsp;</th>
+	  <th class="center">Product</th>
+	  <th class="center">Category</th>
+	  <th class="center">Subcategory</th>
+	  <th class="center">Description</th>
+	  <th class="center">Price</th>
+	  <th class="center">Link</th>
+	  <!-- <th>User</th>
+	  <th>Visible</th>
+	  <th>Actions</th>-->
+	</tr>
+	<% @products.each do |product| %>
+	<tr class="<%= cycle('odd','even') %>">
+	  <td><%= product.position %></td>
+	  <td class="center"><%= image_tag product.pic.url(:thumb) %></td>
+	  <td class="center"><%= product.name %></td>
+	  <td class="center"><%= product.subcategory.category.name %></td>
+	  <td class="center"><%= product.subcategory.name %></td>
+	  <td class="left"><%= product.description %></td>
+	  <td class="right"><%= product.price %></td>
+	  <td class="center"><a href="<%= product.app.url %> "><b> Download / View </b></a></td>
+	  <!-- <td class="right"><%= product.user_id %></td> -->
+	  <!--<td class="center"><%= product.visible ? 'Yes' : 'No' %></td>-->
+	  <!--<td class="center"><%= status_tag(product.visible) %></td>
+	  <td class="actions">
+	    <%= link_to("show", {:action=>'show', :id=>product.id}, :class=>'action show') %>
+		<%= link_to("Edit", {:action=>'edit', :id=>product.id}, :class=>'action edit') %>
+		<%= link_to("Delete",{:action=>'delete', :id=>product.id}, :class=>'action delete') %>
+	  </td>-->
+	</tr>
+	<% end %>
+  </table>
+</div>

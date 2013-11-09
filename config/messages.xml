@@ -1,0 +1,339 @@
+<?xml version= "1.0"?>
+<messages>
+ <message>
+   <status>0</status>
+   <api_text>The Transaction was Successful</api_text>
+   <display_text>The Transaction was Successful.</display_text>
+ </message>
+
+<message>
+   <status>-9999</status>
+   <api_text>You have submitted invalid XML, or one or more fields in the XML request you have submitted is missing or invalid.</api_text>
+   <display_text>Missing fields in your transaction form, please check the form and fill in the missing fields</display_text>
+ </message>
+
+ <message>
+   <status>-31</status>
+   <api_text>There was an internal error processing your request to perform a non-blocking transaction. Please submit your transaction again later</api_text>
+   <display_text>There was an internal error processing your request to perform a non-blocking transaction. Please submit your transaction again later</display_text>
+ </message>
+
+<message>
+   <status>-30</status>
+   <api_text>The transaction was not found in the system. Please verify your transaction reference.</api_text>
+   <display_text>The transaction was not found in the system. Please verify your transaction reference.</display_text>
+ </message>
+
+<message>
+   <status>-29</status>
+   <api_text>In the acgetministatement request, you have specified a currency code that does not exist or is in DRAFT state or is DISABLED</api_text>
+   <display_text>In the acgetministatement request, you have specified a currency code that does not exist or is in DRAFT state or is DISABLED</display_text>
+ </message>
+
+<message>
+   <status>-28</status>
+   <api_text>In the acgetministatement request, you have specified an invalid start date from which to obtain a statement.</api_text>
+   <display_text>In the acgetministatement request, you have specified an invalid start date from which to obtain a statement.</display_text>
+ </message>
+
+<message>
+   <status>-27</status>
+   <api_text>In the acgetministatement request, you have specified an invalid end date up to which to obtain a statement</api_text>
+   <display_text>In the acgetministatement request, you have specified an invalid end date up to which to obtain a statement</display_text>
+ </message>
+
+<message>
+   <status>-26</status>
+   <api_text>In the acgetministatement request, you have specified a start date without specifying the end date.</api_text>
+   <display_text>In the acgetministatement request, you have specified a start date without specifying the end date.</display_text>
+ </message>
+
+<message>
+   <status>-25</status>
+   <api_text>In the acgetministatement request, you have specified an end date without specifying the start date.</api_text>
+   <display_text>In the acgetministatement request, you have specified an end date without specifying the start date.</display_text>
+ </message>
+
+<message>
+   <status>-24</status>
+   <api_text>In the acgetministatement request, you have specified an invalid date range, E.g if the start date is after the end date</api_text>
+   <display_text>In the acgetministatement request, you have specified an invalid date range, E.g if the start date is after the end date</display_text>
+ </message>
+
+<message>
+   <status>-23</status>
+   <api_text>This transaction has been declined because you have reached or exceeded one or more of your withdrawal limits.</api_text>
+   <display_text>This transaction has been declined because you have reached or exceeded one or more of your withdrawal limits.</display_text>
+ </message>
+
+<message>
+   <status>-22</status>
+   <api_text>This transaction requires extra authorization before it may be completed.</api_text>
+   <display_text>This transaction requires extra authorization before it may be completed.</display_text>
+ </message>
+
+<message>
+   <status>-21</status>
+   <api_text>Your IP address is not permitted to carry out transactions on this account.</api_text>
+   <display_text>Your IP address is not permitted to carry out transactions on this account.</display_text>
+ </message>
+
+<message>
+   <status>-20</status>
+   <api_text>Your account was CANCELLED. Please contact your account representative for further advice.</api_text>
+   <display_text>Your account was CANCELLED. Please contact your account representative for further advice.</display_text>
+ </message>
+
+<message>
+   <status>-19</status>
+   <api_text>Your account was TERMINATED. Please contact your account representative for further advice.</api_text>
+   <display_text>Your account was TERMINATED. Please contact your account representative for further advice.</display_text>
+ </message>
+
+<message>
+   <status>-18</status>
+   <api_text>Your account is SUSPENDED. Please contact your account representative for further advice.</api_text>
+   <display_text>Your account is SUSPENDED. Please contact your account representative for further advice.</display_text>
+ </message>
+
+<message>
+   <status>-13</status>
+   <api_text>You do not have sufficient funds to complete this transaction.</api_text>
+   <display_text>You do not have sufficient funds to complete this transaction.</display_text>
+ </message>
+
+<message>
+   <status>-12</status>
+   <api_text>There was a problem initiating this transaction. This transaction has failed. Please try again later.</api_text>
+   <display_text>There was a problem initiating this transaction. This transaction has failed. Please try again later.</display_text>
+ </message>
+
+<message>
+   <status>-11</status>
+   <api_text>Invalid or Unsupported Currency</api_text>
+   <display_text>Invalid or Unsupported Currency</display_text>
+ </message>
+
+<message>
+   <status>-10</status>
+   <api_text>The transaction has not been processed.</api_text>
+   <display_text>The transaction has not been processed.</display_text>
+ </message>
+
+<message>
+   <status>-9</status>
+   <api_text>Error committing initial statement entry. The transaction was not processed, and will not appear in the web interface.</api_text>
+   <display_text>Error committing initial statement entry. The transaction was not processed, and will not appear in the web interface.</display_text>
+ </message>
+
+<message>
+   <status>-8</status>
+   <api_text>This is likley a duplicate transaction. Please vary your submission parameters</api_text>
+   <display_text>This is a duplicate transaction. Please vary your submission paramete</display_text>
+ </message>
+
+<message>
+   <status>-7</status>
+   <api_text>Invalid internal reference parameter.</api_text>
+   <display_text>Invalid internal reference parameter.</display_text>
+ </message>
+
+<message>
+   <status>-6</status>
+   <api_text>Duplicate transaction code (try again later)</api_text>
+   <display_text>Duplicate transaction code,please try again later</display_text>
+ </message>
+
+<message>
+   <status>-5</status>
+   <api_text>The file specified in 'file_narrative' was not found</api_text>
+   <display_text>The file specified in 'file_narrative' was not found</display_text>
+ </message>
+
+<message>
+   <status>-4</status>
+   <api_text>Invalid 'amount' parameter</api_text>
+   <display_text>Invalid 'amount' parameter</display_text>
+ </message>
+
+<message>
+   <status>-3</status>
+   <api_text>Unsupported transaction type parameter</api_text>
+   <display_text>Unsupported transaction type parameter</display_text>
+ </message>
+
+<message>
+   <status>-2</status>
+   <api_text>Unsupported MSISDN Network or Currency</api_text>
+   <display_text>wrong number format, please enter number that corresponds to the format 256..........</display_text>
+ </message>
+
+<message>
+   <status>-1</status>
+   <api_text>An internal error occurred. More information in 'ErrorMessage'</api_text>
+   <display_text>An internal error occurred. More information in 'ErrorMessage'</display_text>
+ </message>
+
+<message>
+   <status>1</status>
+   <api_text>The transaction has been successfully recorded but is pending at the low-level.</api_text>
+   <display_text>The transaction has been successfully recorded but is pending at the low-level.</display_text>
+ </message>
+
+<message>
+   <status>2</status>
+   <api_text>The transaction failed -- see 'ErrorMessage' for more information.</api_text>
+   <display_text>The transaction failed.</display_text>
+ </message>
+
+<message>
+   <status>3</status>
+   <api_text>The transaction failed but we encountered an error updating the transaction state to mark the transaction as FAILED.</api_text>
+   <display_text>The transaction failed but we encountered an error updating the transaction state to mark the transaction as FAILED.</display_text>
+ </message>
+
+<message>
+   <status>4</status>
+   <api_text>The transaction succeeded but we encountered an error updating the transaction state to mark the transaction as successful.</api_text>
+   <display_text>The transaction succeeded but we encountered an error updating the transaction state to mark the transaction as successful.</display_text>
+ </message>
+
+<message>
+   <status>5</status>
+   <api_text>The transaction was rendered indeterminate in as far as our interaction with the network goes</api_text>
+   <display_text>The transaction was rendered indeterminate in as far as our interaction with the network goes</display_text>
+ </message>
+
+<message>
+   <status>6</status>
+   <api_text>The transaction succeeded. However, because of an internal problem, your balance has not yet been updated to reflect the transaction.</api_text>
+   <display_text>The transaction succeeded. However, because of an internal problem, your balance has not yet been updated to reflect the transaction.</display_text>
+ </message>
+
+<message>
+   <status>7</status>
+   <api_text>Unsupported transaction type ''.The transaction was not processed and will appear in the web interface as a FAILED transaction.</api_text>
+   <display_text>Unsupported transaction type ''.The transaction was not processed and will appear in the web interface as a FAILED transaction.</display_text>
+ </message>
+
+<message>
+   <status>8</status>
+   <api_text>Unsupported transaction type ''.processed but there was a problem marking the transaction as FAILED.</api_text>
+   <display_text>TUnsupported transaction type ''.processed but there was a problem marking the transaction as FAILED.</display_text>
+ </message>
+
+<message>
+   <status>9</status>
+   <api_text>Indeterminate Transaction. The response we got from the mobile network mobile money system was inconclusive. It is not clear whether this transaction succeeded or failed.</api_text>
+   <display_text>The transaction succeeded. However, because of an internal problem, your balance has not yet been updated to reflect the transaction.</display_text>
+ </message>
+
+<message>
+   <status>10</status>
+   <api_text>The transaction failed. There was an error contacting the internal processing gateway. Please try your transaction again later</api_text>
+   <display_text>The transaction failed. There was an error contacting the internal processing gateway. Please try your transaction again later</display_text>
+ </message>
+
+<message>
+   <status>11</status>
+   <api_text>The transaction failed. There was an error contacting the internal processing gateway. Error marking transction as FAILED</api_text>
+   <display_text>The transaction failed. There was an error contacting the internal processing gateway. Error marking transction as FAILED.</display_text>
+ </message>
+
+<message>
+   <status>12</status>
+   <api_text>Indeterminate Transaction. There was an error communicating with the internal processing gateway.</api_text>
+   <display_text>Indeterminate Transaction.The problem shall be resolved in an hour.</display_text>
+ </message>
+
+<message>
+   <status>13</status>
+   <api_text>Indeterminate Transaction. There was an error communicating with the internal processing gateway. However, transaction not completed.</api_text>
+   <display_text>Indeterminate Transaction. There was an error communicating with the internal processing gateway. However, transaction not completed.</display_text>
+ </message>
+
+<message>
+   <status>14</status>
+   <api_text>The OUTBOUND_MSISDN_DEBIT transation failed. Your account balance is unaffected. See 'ErrorMessage' for more information on why the transaction failed.  </api_text>
+   <display_text>The OUTBOUND_MSISDN_DEBIT transation failed. Your account balance is unaffected..</display_text>
+ </message>
+
+<message>
+   <status>15</status>
+   <api_text>The OUTBOUND_MSISDN_DEBIT transaction failed. However, there was a problem restoring your account balance.</api_text>
+   <display_text>The OUTBOUND_MSISDN_DEBIT transaction failed. However, there was a problem restoring your account balance.</display_text>
+ </message>
+
+<message>
+   <status>16</status>
+   <api_text>The OUTBOUND_MSISDN_DEBIT transaction could not be completed because of a problem posting the initial transaction statement.</api_text>
+   <display_text>The OUTBOUND_MSISDN_DEBIT transaction could not be completed because of a problem posting the initial transaction statement.</display_text>
+ </message>
+
+<message>
+   <status>17</status>
+   <api_text>The OUTBOUND_MSISDN_DEBIT succeeded, however you need to manually do the following: (a) Mark the transaction with code ''in the Suspense Account '' as SUCCEEDED; and (b) Debit the network tracking account '' for network '' with the amount: </api_text>
+   <display_text>The OUTBOUND_MSISDN_DEBIT succeeded, however you need to manually do the following: (a) Mark the transaction with code ''in the Suspense Account '' as SUCCEEDED; and (b) Debit the network tracking account '' for network '' with the amount:</display_text>
+ </message>
+
+<message>
+   <status>18</status>
+   <api_text> The transaction failed. There was an error contacting the internal processing gateway. Please try your transaction again later</api_text>
+   <display_text>The transaction failed. Please try your transaction again later</display_text>
+ </message>
+
+<message>
+   <status>19</status>
+   <api_text>The transaction failed. There was an error contacting the internal processing gateway. However, error marking transaction as FAILED.</api_text>
+   <display_text>The transaction failed. There was an error contacting the internal processing gateway. However, error marking transaction as FAILED.</display_text>
+ </message>
+
+<message>
+   <status>20</status>
+   <api_text>Indeterminate Transaction. There was an error communicating with the internal processing gateway. Therefore, you shall notice that this transaction is in the INDETERMINATE state.</api_text>
+   <display_text>Indeterminate Transaction. There was an error communicating with the internal processing gateway.Transaction is in the INDETERMINATE state.          </display_text>
+ </message>
+
+<message>
+   <status>21</status>
+   <api_text>Indeterminate Transaction. There was an error communicating with the internal processing gateway. Transaction not completed</api_text>
+   <display_text>Indeterminate Transaction. There was an error communicating with the internal processing gateway. Transaction not completed</display_text>
+ </message>
+
+<message>
+   <status>22</status>
+   <api_text>The transaction failed but we encountered an error updating the transaction state to mark the transaction as FAILED.</api_text>
+   <display_text>The transaction failed but we encountered an error updating the transaction state to mark the transaction as FAILED</display_text>
+ </message>
+
+<message>
+   <status>23</status>
+   <api_text>The transaction was rendered indeterminate.The transcation will need to be manually completed.</api_text>
+   <display_text>The transaction was rendered indeterminate.The transcation will need to be manually completed.</display_text>
+ </message><message>
+
+   <status>24</status>
+   <api_text>The transaction failed -- see 'ErrorMessage' for more information. Your balance remains unaffected.</api_text>
+   <display_text>The transaction failed. Your balance remains unaffected.</display_text>
+ </message>
+
+<message>
+   <status>25</status>
+   <api_text>Indeterminate Transaction. The response we got from the mobile network mobile money system was inconclusive.</api_text>
+   <display_text>Indeterminate Transaction. The response we got from the mobile network mobile money system was inconclusive.</display_text>
+ </message>
+
+<message>
+   <status>26</status>
+   <api_text>The transaction was declined by the user.</api_text>
+   <display_text>The transaction was declined by the user.</display_text>
+ </message>
+
+<message>
+   <status>27</status>
+   <api_text>The transaction is in a PENDING state but we encountered an error updating the transaction state to mark the transaction as PENDING.</api_text>
+   <display_text>The transaction is in a PENDING state but we encountered an error updating the transaction state to mark the transaction as PENDING.</display_text>
+ </message>
+
+
+</messages>

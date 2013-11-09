@@ -13,3 +13,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+$("input[name=Transaction_PaymentProvider]").click(function(){
+    if($('input:radio[name=Transaction_PaymentProvider]:checked').val() == "2"){
+        $('.panel-body').show();
+    }else{
+        $('.panel-body').hide();
+    }
+}

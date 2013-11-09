@@ -1,5 +1,8 @@
+<%@page_title='Order description'%>
 <p id="notice"><%= notice %></p>
-
+<p style="font-weight:bold;">
+  <%= @line_items.product.seller.name %>, <%= @order.branch.branch_name %>
+</p>
 <p>
   <b>Name:</b>
   <%= @order.name %>
@@ -24,12 +27,14 @@
   <table>
   <tr>
       <th>
-        Orders        
+         Quantity       
       </th>
       <th>
-         from 
+         Item 
       </th>
-      <th><%= @line_items.product.seller.name %></th>
+      <th>
+        Total price/Item
+      </th>
     </tr>
   <% @order.line_items.each do |item| %>   
     <tr>
@@ -55,5 +60,4 @@
     </tr>
   </table>
 </p>
-<%= link_to 'Edit', edit_order_path(@order) %> |
 <%= link_to 'Back', orders_path %>

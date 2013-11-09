@@ -1,0 +1,103 @@
+class BranchesController < ApplicationController
+  # GET /branches
+  # GET /branches.json
+  layout 'user'
+  before_filter :confirm_logged_in_admin
+
+  def index
+    unread
+
+    @branches = Branch.paginate :page=>params[:page], :order=>'created_at desc' , :per_page => 10
+     @sellers =Seller.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @branches }
+    end
+  end
+
+  # GET /branches/1
+  # GET /branches/1.json
+  def show
+    unread
+
+    @branch = Branch.find(params[:id])
+     @sellers =Seller.all
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @branch }
+    end
+  end
+
+  # GET /branches/new
+  # GET /branches/new.json
+  def new
+    unread
+
+    @branch = Branch.new
+    @sellers = Seller.order('name ASC')
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @branch }
+    end
+  end
+
+  # GET /branches/1/edit
+  def edit
+    unread
+
+    @branch = Branch.find(params[:id])
+     @sellers =Seller.all
+  end
+
+  # POST /branches
+  # POST /branches.json
+  def create
+    unread
+
+    @branch = Branch.new(params[:branch])
+     @sellers =Seller.all
+
+    respond_to do |format|
+      if @branch.save
+        format.html { redirect_to @branch, notice: 'Branch was successfully created.' }
+        format.json { render json: @branch, status: :created, location: @branch }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @branch.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PUT /branches/1
+  # PUT /branches/1.json
+  def update
+    unread
+    
+    @branch = Branch.find(params[:id])
+
+    respond_to do |format|
+      if @branch.update_attributes(params[:branch])
+        format.html { redirect_to @branch, notice: 'Branch was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @branch.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /branches/1
+  # DELETE /branches/1.json
+  def destroy
+    @branch = Branch.find(params[:id])
+    @branch.destroy
+
+    respond_to do |format|
+      format.html { redirect_to branches_url }
+      format.json { head :no_content }
+    end
+  end
+end

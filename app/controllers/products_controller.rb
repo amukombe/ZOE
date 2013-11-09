@@ -1,9 +1,12 @@
 class ProductsController < ApplicationController
   layout 'user'
+  before_filter :confirm_logged_in_admin
   # GET /products
   # GET /products.json
   #layout 'admin'
   def index
+    unread
+
     @products = Product.paginate :page=>params[:page], :order=>'created_at desc' , :per_page => 10
 
     respond_to do |format|
@@ -15,6 +18,8 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
+    unread
+
     @product = Product.find(params[:id])
     #seller = Seller.find(params[:seller_id])
     respond_to do |format|
@@ -26,6 +31,8 @@ class ProductsController < ApplicationController
   # GET /products/new
   # GET /products/new.json
   def new
+    unread
+
     @product = Product.new
     @sellers = Seller.order('sellers.name ASC')
 
@@ -37,6 +44,8 @@ class ProductsController < ApplicationController
 
   # GET /products/1/edit
   def edit
+    unread
+
     @product = Product.find(params[:id])
     @sellers = Seller.all
   end
@@ -44,6 +53,8 @@ class ProductsController < ApplicationController
   # POST /products
   # POST /products.json
   def create
+    unread
+
     @product = Product.new(params[:product])
     @sellers = Seller.all
 
@@ -61,6 +72,8 @@ class ProductsController < ApplicationController
   # PUT /products/1
   # PUT /products/1.json
   def update
+    unread
+
     @product = Product.find(params[:id])
     @sellers = Seller.all
 
@@ -78,6 +91,8 @@ class ProductsController < ApplicationController
   # DELETE /products/1
   # DELETE /products/1.json
   def destroy
+    unread
+
     @product = Product.find(params[:id])
     @product.destroy
 
@@ -88,10 +103,17 @@ class ProductsController < ApplicationController
   end
 
   def who_bought
+    unread
+    
     @product = Product.find(params[:id])
     respond_to do |format|
     format.atom
     format.xml { render :xml => @product }
     end
   end
+
+  def search
+    
+  end
+
 end

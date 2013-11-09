@@ -1,21 +1,36 @@
-<h1>Listing items</h1>
+<%@page_title='submitted orders'%>
+<h3>Listing items</h3>
 
-<table>
+<table class="table table-striped" style="font-size:14px;width:auto;">
   <tr>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Order</th>
+    <th>Seller</th>
+    <th>Status</th>
+    <th>Action</th>
   </tr>
 
-<% @items.each do |item| %>
-  <tr>
-    <td><%= link_to 'Show', item %></td>
-    <td><%= link_to 'Edit', edit_item_path(item) %></td>
-    <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<% @order_items.each do |item| %>
+  <tr style="background:#ccc;">
+    <td>
+      <% @orders = Order.find_by_id(item.order_id) %>
+      <%= @orders.name %>
+    </td>
+    <td>
+      <% @sellers = Seller.find_by_id(item.seller_id) %>
+      <%= @sellers.name %>
+    </td>
+    <td style="color:green;"><%= item.status ? 'Finished' : 'Pending...' %></td>
+    <td>
+    <% if item.status %>
+      <%= link_to 'Show', item %>
+    <% else %>
+      <%= link_to 'submit', {:action=>'status', :id=>item.id}, :style=>"color:red;", :confirm=>'Are you sure you make order?' %>
+    <%end%> |
+      <%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </td>
   </tr>
 <% end %>
 </table>
 
 <br />
-
-<%= link_to 'New Item', new_item_path %>
+<p><%= will_paginate @items %></p>

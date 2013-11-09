@@ -1,0 +1,32 @@
+<%@page_title='Managers'%>
+<div>
+    <%= pluralize(@managers.size, "manager") %> available | 
+    <%= link_to 'New Manager', new_manager_path %>
+  </div>
+<div class="depot_form" >
+  <fieldset>
+  <h3>Listing managers</h3>
+
+  <table class="table table-striped" style="font-size:14px;width:auto;">
+    <tr style="font-weight:bold;">
+      <th>Names</th>
+      <th>Supermarket</th>
+      <th>Branch</th>
+      <th>Action</th>
+    </tr>
+
+  <% @managers.each do |manager| %>
+    <tr style="background:#ccc;">
+      <td><%= manager.firstname + ' ' + manager.lastname %></td>
+      <td><%= manager.seller.name %></td>
+      <td><%= manager.branch.branch_name %></td>
+      <td><%= link_to 'Show', manager %> |
+        <%= link_to 'Edit', edit_manager_path(manager) %> |
+        <%= link_to 'Destroy', manager, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </td>
+    </tr>
+  <% end %>
+  </table>
+</div>
+</fieldset>
+<p><%= will_paginate @managers %></p>

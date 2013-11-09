@@ -1,12 +1,17 @@
-<h1>Listing orders</h1>
+<div>
+    <%= pluralize(@orders.size, "order") %> available 
+  </div>
+<h3>Listing orders</h3>
+<% @page_title='Available Orders' %>
 
-<table cellpadding="2" cellspacing="2">
+<table class="table table-striped" style="font-size:14px;width:auto;">
   <tr>
     <th>Name</th>
     <th>Address</th>
     <th>Email</th>
     <th>Pay type</th>
-    <th>Action</th>
+    <th>Status</th>
+    <th>Action</th>    
   </tr>
 
 <% @orders.each do |order| %>
@@ -15,15 +20,17 @@
     <td><%= order.address %></td>
     <td><%= order.email %></td>
     <td><%= order.pay_type %></td>
-    <td><%= link_to 'Show', order %> |
-        <%= link_to 'Edit', edit_order_path(order) %> |
+    <td style="color:green;"><%= order.status ? 'Finished' : 'Pending...' %></td>
+    <td>
+      <% if order.status %>
+        <%= link_to 'show', order %>
+      <% else %>
+        <%= link_to 'submit', {:action=>'status', :id=>order.id}, :confirm=>'Are you sure you want to submit order?', :style=>"color:red;" %>
+      <%end%> |
         <%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %>
-    </td>
+    </td>    
   </tr>
 <% end %>
 </table>
 
-<br />
-
-<%= link_to 'New Order', new_order_path %>
 <p><%= will_paginate @orders %></p>

@@ -4,6 +4,8 @@ class CartsController < ApplicationController
   # GET /carts
   # GET /carts.json
   def index
+    unread
+
     @carts = Cart.all
     @cart = current_cart
 
@@ -16,6 +18,7 @@ class CartsController < ApplicationController
   # GET /carts/1
   # GET /carts/1.json
   def show
+    unread
     #@cart = Cart.find(params[:id])
     begin
       @cart = Cart.find(params[:id])
@@ -34,6 +37,8 @@ class CartsController < ApplicationController
   # GET /carts/new
   # GET /carts/new.json
   def new
+    unread
+
     @cart = Cart.new
 
     respond_to do |format|
@@ -44,12 +49,16 @@ class CartsController < ApplicationController
 
   # GET /carts/1/edit
   def edit
+    unread
+
     @cart = Cart.find(params[:id])
   end
 
   # POST /carts
   # POST /carts.json
   def create
+    unread
+
     @cart = Cart.new(params[:cart])
 
     respond_to do |format|
@@ -66,6 +75,7 @@ class CartsController < ApplicationController
   # PUT /carts/1
   # PUT /carts/1.json
   def update
+    unread
     @cart = Cart.find(params[:id])
 
     respond_to do |format|

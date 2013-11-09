@@ -1,5 +1,10 @@
-<h1>New seller</h1>
+<% @page_title = 'Seller | new' %>
 
-<%= render 'form' %>
+<div class="depot_form" >
+	<h3>Please Enter Seller Details</h3>
+	<fieldset>
+		<%= render 'form' %>
 
-<%= link_to 'Back', sellers_path %>
+		<%= link_to 'Back', sellers_path %>
+	</fieldset>
+</div>

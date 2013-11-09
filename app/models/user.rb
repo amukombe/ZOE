@@ -2,10 +2,12 @@ class User < ActiveRecord::Base
   require 'digest/sha2'
   belongs_to :role
 
-  attr_accessible :hashed_password, :name, :salt, :role_id, :password_confirmation,
+  attr_accessible :hashed_password, :name, :salt, :role_id, :password_confirmation, :firstname, :lastname, :address, :phone_no, :password
 :password
   validates :name, :presence => true, :uniqueness => true
   validates :password, :confirmation => true
+  validates :firstname, :lastname, :address, :phone_no, :presence=>true
+
   attr_accessor :password_confirmation
   attr_reader :password
   validate :password_must_be_present

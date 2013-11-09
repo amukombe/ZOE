@@ -1,5 +1,97 @@
+<%@page_title='complete order'%>
 <p id="notice"><%= notice %></p>
+<% if session[:role]=="Admin"%>
+  <%= link_to 'Back', :controller=>'items', :action=>'admin_view' %>
+<%elsif session[:role]=="Manager"%>
+  <%= link_to 'Back', items_path %>
+<%end%>
+
+<div id="divToPrint" >
+
+  <div style="width:400px;height:auto;background-image:transparent; border:1px solid green;border-style:dotted;padding-left:20px;">
+    <p>
+      <b> ***THANKS FOR SHOPPING AT MABIRA***</b> 
+    </p>
+    <p style="font-weight:bold;">
+  <%= @line_items.product.seller.name %>, <%= @order.branch.branch_name %>
+</p>
+    <p>
+      <b>Client Name:</b>
+      <%= @order.name %>
+    </p>
+
+    <% if @order.delivery == true %>
+      <p>
+        <b style="color:blue;">Collect from supermarket</b>
+      </p>
+      <p>
+        <b>Pick Time:</b>
+        <%= @order.delivery_time %>
+      </p>
+    <%else%>
+    <p>
+      <b>Address:</b>
+      <%= @order.address %>
+    </p>
+    <p>
+        <b>Delivery Time:</b>
+        <%= @order.delivery_time %>
+      </p>
+    <%end%>
+    <p>
+      <b>Email:</b>
+      <%= @order.email %>
+    </p>
+
+    <p>
+      <b>Pay type:</b>
+      <%= @order.pay_type %>
+    </p>
+
+    <p>
+      <b>Phone_number:</b>
+      <%= @order.phone_no %>
+    </p>
+    <p>
+      
+      <table>
+      <tr>
+          <th>
+             Quantity     
+          </th>
+          <th>
+             Item 
+          </th>
+          <th>Total price / Item</th>
+        </tr>
+      <% @order.line_items.each do |item| %>   
+        <tr>
+          <td>
+            <%= item.quantity %>&times;
+          </td>
+          <td class="item_price">
+            <%= item.product.title %>
+          </td>
+          <td class="item_price"><%= sprintf("Ush %0.1f",item.total_price) %></td>
+        </tr>
+        <% end %>
+        <tr>
+          <td>
+            
+          </td>
+          <td class="item_price", style="border-top:1px solid black; border-top-style:dotted; font-weight:bold;">
+            Total
+          </td>
+          <td class="item_price", style="border-top:1px solid black; border-top-style:dotted; font-weight:bold;">
+             <%= sprintf("Ush %0.1f",@order.total) %>
+          </td>
+        </tr>
+      </table>
+    </p>
+  </div>
+</div>
+<div>
+  <%= image_tag("print.jpg", :width=>50, :height=>30, :onclick=>"PrintDiv();", :class=>'btn') %>
+</div>
 
 
-<%= link_to 'Edit', edit_item_path(@item) %> |
-<%= link_to 'Back', items_path %>

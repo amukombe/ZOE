@@ -2,6 +2,9 @@ class MainController < ApplicationController
   layout 'admin'
 
   def index
+  	unread
+  	inbox
+  	
   	@sellers = Seller.all
   	@products = Product.all
   	@cart = current_cart

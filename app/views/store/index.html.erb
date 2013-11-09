@@ -3,9 +3,7 @@
 <p id="notice" ><%= notice %></p>
 <% end %>
 
-<div>
-	<%= pluralize(@products.size, "Item") %> available
-</div>
+	<header class="span6"><%= pluralize(@products.size, "Item") %> available | <%= link_to 'Back', {:controller=>'main', :action=>'index'}%></header>
 click on every item you want to buy
 <h3 style="margin-bottom:10px; color:green; font-weight:bold;" ><%= @catalog.name %> Catalog
 </h3>

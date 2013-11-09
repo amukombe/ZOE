@@ -10,28 +10,71 @@
       </ul>
     </div>
   <% end %>
+    
+    
+  <div class="field">
+    <%= f.label :branch_name %>
+    <%= f.select(:branch_id, @branches.collect{|r| [r.branch_name, r.id]}, {:include_blank=>'--- select branch ---'}) %>
+  </div>
+
   <div class="field">
     <%= f.label :name %> :<br />
     <%= f.text_field :name, :size => 40 %>
   </div>
-  <div class="field">
-    <%= f.label :address, "Location (street, plot ,area, division, village)" %> :<br />
-    <%= f.text_area :address, :rows => 3, :cols => 40 %>
-  </div>
+  
   <div class="field">
     <%= f.label :email %> :<br />
     <%= f.email_field :email, :size => 40 %>
   </div>
+
   <div class="field">
     <%= f.label :pay_type %> :<br />
     <%= f.select :pay_type, Order::PAYMENT_TYPES, :prompt => 'Select a payment method' %>
   </div>
+
   <div class="field">
     <%= f.label :phone_no %> :<br />
     <%= f.text_field :phone_no %><br />
-  </div
+  </div>
+
+  <div class="field">
+    <%= f.label :time_of_picking_or_delivery %> :<br />
+    <%= f.time_select(:delivery_time, :ampm=>true, :minute_step=>10) %><br />
+  </div>
+
+  <div style="margin-left:100px;">
+    <%= f.radio_button :delivery, true, :onClick=>"validator()" %> Pick from supermarket<br/>
+    <%= f.radio_button :delivery, true, :onClick=>"amount(); validator2()" %> Deliver at premises<br/>
+  </div>
+
+  <div class="panel-body">
+    <%= f.label :address, "Location (street, plot ,area, division, village)" %> :<br />
+    <%= f.text_area :address, :rows => 3, :cols => 40 %>
+  </div>
+
   <%= f.hidden_field :total, :value=>@cart.total_price %>
   <div class="actions">
-    <%= f.submit 'Place Order' %>
+    <%= f.submit 'Submit Order', :class=>"btn btn-medium btn-info" %>
   </div>
 <% end %>
+
+<script type="text/javascript">
+      function validator(){
+        
+        if(document.forms[2].elements[6].name.checked)
+          $('.panel-body').show();
+        else
+         $('.panel-body').hide(); 
+      }
+      function validator2(){
+        
+        if(document.forms[2].elements[7].name.checked)
+          $('.panel-body').hide();
+          
+        else
+          $('.panel-body').show();
+      }
+      function amount(){
+        confirm("The delivery fee is 5000Ush only within a radius of 5km from supermarket")
+      }
+  </script>

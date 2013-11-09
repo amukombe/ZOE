@@ -4,6 +4,8 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
+    unread
+
     @users = User.paginate :page=>params[:page], :order=>'name asc' , :per_page => 10
     @role = Role.all
 
@@ -16,6 +18,8 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    unread
+
     begin
       @user = User.find(params[:id])
       @role = Role.all
@@ -35,6 +39,8 @@ class UsersController < ApplicationController
   # GET /users/new
   # GET /users/new.json
   def new
+    unread
+
     @user = User.new
     @roles = Role.order(:title)
 
@@ -46,6 +52,8 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    unread
+
     @user = User.find(params[:id])
     @roles = Role.all
   end
@@ -53,6 +61,8 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
+    unread
+
     @user = User.new(params[:user])
 
     respond_to do |format|
@@ -69,6 +79,8 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.json
   def update
+    unread
+    
     @user = User.find(params[:id])
 
     respond_to do |format|

@@ -2,7 +2,8 @@ class StoreController < ApplicationController
   layout 'admin'
   
   def index
-  	
+  	unread
+    inbox
 
   	begin
     @catalog = Seller.find(params[:seller_id])
@@ -23,4 +24,14 @@ class StoreController < ApplicationController
   	#@seller = current_seller
   	end
   end
+
+  def advanced_search
+    @products = Product.where("title LIKE ? ", "%#{params[:search]}%")
+  end
+
+  def self.search(search)
+    return scoped unless search.present?
+      where(['title LIKE ?', "%#{search}%"])
+  end
+  
 end

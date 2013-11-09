@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   layout 'user'
-  before_filter :confirm_logged_in, :except=>[:new, :create]
+  before_filter :confirm_logged_in, :except=>[:new, :create, :destroy]
 
   def index
     menu
@@ -35,6 +35,9 @@ class SessionsController < ApplicationController
   	session[:user_id] = nil
     session[:role_id] = nil
     session[:name] = nil
+    if session[:branch_id]
+      session[:branch_id] = nil
+    end
 
     flash[:notice] = "you are logged out"
 	 redirect_to :controller=>'main', :action=>'index'

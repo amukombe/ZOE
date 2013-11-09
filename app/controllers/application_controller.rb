@@ -19,9 +19,26 @@ class ApplicationController < ActionController::Base
 	end
 
 	def confirm_logged_in
-		unless User.find_by_id(session[:user_id])
+		unless session[:user_id]
 		flash[:notice] = "Please you must login"
-		redirect_to :controller=>'access', :action=>'login'
+		redirect_to :controller=>'access', :action=>'login', :notice=>'You do not permissions to access this page until you login in'
 		end
 	end
+	def confirm_logged_in_admin
+		unless User.find_by_id(session[:user_id]) && session[:role] == "Admin"
+		flash[:notice] = "You do not have enough rights to perform this action"
+		redirect_to :controller=>'access', :action=>'login',:notice=>'You do not permissions to access this page until you login in'
+		end
+	end
+	def inbox
+		@items = Item.all
+	  	branch = false
+	  	@total_orders = Item.find_all_by_status(branch)
+	end
+	def unread
+		@total_orders = Order.count
+	  	status = false
+	  	@unread = Order.find_all_by_status(status)
+	end
+	
 end

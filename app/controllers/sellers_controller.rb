@@ -4,6 +4,8 @@ class SellersController < ApplicationController
   # GET /sellers
   # GET /sellers.json
   def index
+    unread
+
     @sellers = Seller.paginate :page=>params[:page], :order=>'name asc' , :per_page => 10
 
     respond_to do |format|
@@ -15,6 +17,8 @@ class SellersController < ApplicationController
   # GET /sellers/1
   # GET /sellers/1.json
   def show
+    unread
+
     @seller = Seller.find(params[:id])
 
     respond_to do |format|
@@ -26,6 +30,8 @@ class SellersController < ApplicationController
   # GET /sellers/new
   # GET /sellers/new.json
   def new
+    unread
+
     @seller = Seller.new
 
     respond_to do |format|
@@ -36,12 +42,16 @@ class SellersController < ApplicationController
 
   # GET /sellers/1/edit
   def edit
+    unread
+
     @seller = Seller.find(params[:id])
   end
 
   # POST /sellers
   # POST /sellers.json
   def create
+    unread
+
     @seller = Seller.new(params[:seller])
 
     respond_to do |format|
@@ -58,6 +68,8 @@ class SellersController < ApplicationController
   # PUT /sellers/1
   # PUT /sellers/1.json
   def update
+    unread
+    
     @seller = Seller.find(params[:id])
 
     respond_to do |format|
@@ -80,6 +92,27 @@ class SellersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to sellers_url }
       format.json { head :no_content }
+    end
+  end
+
+  def enable
+    @seller = Seller.find(params[:id])
+
+    if @seller.update_attribute(:enabled, false)
+      flash[:notice] = "seller disabled"
+      redirect_to :controller=>'sellers', :action=>'index'
+    else
+      flash[:notice] = "failed to submit order"
+    end
+  end
+  def disable
+    @seller = Seller.find(params[:id])
+
+    if @seller.update_attribute(:enabled, true)
+      flash[:notice] = "seller disabled"
+      redirect_to :controller=>'sellers', :action=>'index'
+    else
+      flash[:notice] = "failed to submit order"
     end
   end
 end

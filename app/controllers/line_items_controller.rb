@@ -4,6 +4,8 @@ class LineItemsController < ApplicationController
   # GET /line_items
   # GET /line_items.json
   def index
+    unread
+
     @line_items = LineItem.all
     @cart = current_cart
 
@@ -16,6 +18,7 @@ class LineItemsController < ApplicationController
   # GET /line_items/1
   # GET /line_items/1.json
   def show
+    unread
     #order = LineItem.find(params[:order_id])
     @line_item = LineItem.find(params[:id])
     @cart = current_cart
@@ -29,6 +32,8 @@ class LineItemsController < ApplicationController
   # GET /line_items/new
   # GET /line_items/new.json
   def new
+    unread
+
     @line_item = LineItem.new
 
     respond_to do |format|
@@ -39,19 +44,21 @@ class LineItemsController < ApplicationController
 
   # GET /line_items/1/edit
   def edit
+    unread
     @line_item = LineItem.find(params[:id])
   end
 
   # POST /line_items
   # POST /line_items.json
   def create
+    unread
     @cart = current_cart
     product = Product.find(params[:product_id])
     @line_item = @cart.add_product(product.id)
 
     respond_to do |format|
       if @line_item.save
-        flash[:notice] = 'Your cart has been updated.'
+       # flash[:notice] = 'Your cart has been updated.'
         format.html { redirect_to :controller=>'store',:action=>'index',:seller_id=>product.seller_id }
         format.js { @current_item = @line_item }
         format.xml { render :xml => @line_item, :status => :created, :location => @line_item }
@@ -65,6 +72,7 @@ class LineItemsController < ApplicationController
   # PUT /line_items/1
   # PUT /line_items/1.json
   def update
+    unread
     @line_item = LineItem.find(params[:id])
 
     respond_to do |format|

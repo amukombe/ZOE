@@ -1,5 +1,15 @@
 Supermarket::Application.routes.draw do
   
+  resources :branches
+
+
+  get "items/admin_view"
+  
+  get "search/index"
+
+  resources :managers
+
+
   get "access/login"
 
   get "access/create"
@@ -29,6 +39,8 @@ Supermarket::Application.routes.draw do
 
 
   get "main/index"
+
+  get "products/search"
 
   resources :sellers
 

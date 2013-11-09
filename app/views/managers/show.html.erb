@@ -1,0 +1,32 @@
+<%@page_title='Manager description'%>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Names:</b>
+  <%= @manager.firstname + ' ' + @manager.lastname %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @manager.email %>
+</p>
+
+<p>
+  <b>Phone no:</b>
+  <%= @manager.phone_no %>
+</p>
+
+<p>
+  <b>Supermarket:</b>
+  <%= @manager.seller.name %>
+</p>
+
+<p>
+  <b>Branch name:</b>
+  <%= @manager.branch.branch_name %>
+</p>
+
+
+
+<%= link_to 'Edit', edit_manager_path(@manager) %> |
+<%= link_to 'Back', managers_path %>

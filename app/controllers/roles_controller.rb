@@ -3,6 +3,8 @@ class RolesController < ApplicationController
   # GET /roles
   # GET /roles.json
   def index
+    unread
+
     @roles = Role.all
 
     respond_to do |format|
@@ -14,6 +16,8 @@ class RolesController < ApplicationController
   # GET /roles/1
   # GET /roles/1.json
   def show
+    unread
+
     @role = Role.find(params[:id])
 
     respond_to do |format|
@@ -25,6 +29,8 @@ class RolesController < ApplicationController
   # GET /roles/new
   # GET /roles/new.json
   def new
+    unread
+
     @role = Role.new
 
     respond_to do |format|
@@ -35,12 +41,16 @@ class RolesController < ApplicationController
 
   # GET /roles/1/edit
   def edit
+    unread
+
     @role = Role.find(params[:id])
   end
 
   # POST /roles
   # POST /roles.json
   def create
+    unread
+
     @role = Role.new(params[:role])
 
     respond_to do |format|
@@ -57,6 +67,8 @@ class RolesController < ApplicationController
   # PUT /roles/1
   # PUT /roles/1.json
   def update
+    unread
+    
     @role = Role.find(params[:id])
 
     respond_to do |format|

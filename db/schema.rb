@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131014211759) do
+ActiveRecord::Schema.define(:version => 20131105224210) do
+
+  create_table "branches", :force => true do |t|
+    t.integer  "seller_id"
+    t.string   "branch_name"
+    t.string   "address"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "carts", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -19,13 +27,12 @@ ActiveRecord::Schema.define(:version => 20131014211759) do
   end
 
   create_table "items", :force => true do |t|
-    t.string   "item_name"
-    t.integer  "quantity"
-    t.integer  "total_item_price"
-    t.integer  "total_cost"
-    t.integer  "cart_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.integer  "order_id"
+    t.integer  "seller_id"
+    t.boolean  "status",     :default => false
+    t.integer  "branch_id"
   end
 
   create_table "line_items", :force => true do |t|
@@ -37,15 +44,35 @@ ActiveRecord::Schema.define(:version => 20131014211759) do
     t.integer  "order_id"
   end
 
+  create_table "managers", :force => true do |t|
+    t.string   "name"
+    t.string   "hashed_password"
+    t.string   "salt"
+    t.integer  "role_id"
+    t.integer  "seller_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.integer  "branch_id"
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "email"
+    t.string   "phone_no"
+    t.string   "address"
+  end
+
   create_table "orders", :force => true do |t|
     t.string   "name"
     t.text     "address"
     t.string   "email"
     t.string   "pay_type"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
     t.string   "phone_no"
     t.decimal  "total"
+    t.boolean  "status",        :default => false
+    t.boolean  "delivery"
+    t.integer  "branch_id"
+    t.time     "delivery_time"
   end
 
   create_table "products", :force => true do |t|
@@ -69,9 +96,10 @@ ActiveRecord::Schema.define(:version => 20131014211759) do
     t.string   "name"
     t.string   "address"
     t.string   "url"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
     t.string   "link"
+    t.boolean  "enabled",    :default => true
   end
 
   create_table "users", :force => true do |t|
@@ -81,6 +109,10 @@ ActiveRecord::Schema.define(:version => 20131014211759) do
     t.integer  "role_id"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "phone_no"
+    t.string   "address"
   end
 
 end

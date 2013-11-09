@@ -1,0 +1,36 @@
+<%@page_title='submitted orders'%>
+<h3>Listing items</h3>
+
+<table class="table table-striped" style="font-size:14px;width:auto;">
+  <tr>
+    <th>Order</th>
+    <th>Seller</th>
+    <th>Status</th>
+    <th>Action</th>
+  </tr>
+
+<% @items.each do |item| %>
+  <tr style="background:#ccc;">
+    <td>
+      <% @orders = Order.find_by_id(item.order_id) %>
+      <%= @orders.name %>
+    </td>
+    <td>
+      <% @sellers = Seller.find_by_id(item.seller_id) %>
+      <%= @sellers.name %>
+    </td>
+    <td style="color:green;"><%= item.status ? 'Finished' : 'Pending...' %></td>
+    <td>
+    <% if item.status %>
+      <%= link_to 'Show', item %>
+    <% else %>
+      <%= link_to 'submit', {:action=>'status', :id=>item.id}, :style=>"color:red;", :confirm=>'Are you sure you make order?' %>
+    <%end%> |
+      <%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<p><%= will_paginate @items %></p>

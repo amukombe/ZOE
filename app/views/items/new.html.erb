@@ -1,5 +1,60 @@
-<h1>New item</h1>
+<% @page_title='Complete order' %>
+<h3>do you want to submit order</h3>
+<p>
+  <b>Name:</b>
+  <%= @order.name %>
+</p>
 
+<p>
+  <b>Address:</b>
+  <%= @order.address %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @order.email %>
+</p>
+
+<p>
+  <b>Pay type:</b>
+  <%= @order.pay_type %>
+</p>
+<p>
+  
+  <table>
+  <tr>
+      <th>
+        Orders        
+      </th>
+      <th>
+         from 
+      </th>
+      <th><%= @line_items.product.seller.name %></th>
+    </tr>
+  <% @order.line_items.each do |item| %>   
+    <tr>
+      <td>
+        <%= item.quantity %>&times;
+      </td>
+      <td class="item_price">
+        <%= item.product.title %>
+      </td>
+      <td class="item_price"><%= sprintf("Ush %0.1f",item.total_price) %></td>
+    </tr>
+    <% end %>
+    <tr>
+      <td>
+        
+      </td>
+      <td class="item_price", style="border-top:1px solid black; border-top-style:dotted; font-weight:bold;">
+        Total
+      </td>
+      <td class="item_price", style="border-top:1px solid black; border-top-style:dotted; font-weight:bold;">
+         <%= sprintf("Ush %0.1f",@order.total) %>
+      </td>
+    </tr>
+  </table>
+</p>
 <%= render 'form' %>
 
-<%= link_to 'Back', items_path %>
+<%= link_to 'Back', orders_path %>

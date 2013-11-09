@@ -15,7 +15,24 @@
     <% end %>
 
     <fieldset>
-      <legend>Enter User Details</legend>
+      <div>
+        <%= f.label :first_name %>:
+        <%= f.text_field :firstname, :size => 40 %>
+      </div>
+      <div>
+        <%= f.label :last_name %>:
+        <%= f.text_field :lastname, :size => 40 %>
+      </div>
+      <div>
+      <div>
+        <%= f.label :address %>:
+        <%= f.text_field :address, :size => 40 %>
+      </div>
+      <div>
+        <%= f.label :phone_no %>:
+        <%= f.text_field :phone_no, :size => 40 %>
+      </div>
+
       <div>
         <%= f.label :name %>:
         <%= f.text_field :name, :size => 40 %>

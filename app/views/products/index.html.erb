@@ -1,12 +1,13 @@
 <div class="depot_form" >
+	<% @page_title='Available Products' %>
 	<div>
-		<%= pluralize(@products.size, "Items") %> available 
+		<%= pluralize(@products.size, "Item") %> available 
 		<%= link_to 'New product' , new_product_path %>
 	</div>
 	
 	<fieldset>
-	<h1>Listing products</h1>
-	<table cellpadding="3" cellspacing="5">
+	<h3>Listing products</h3>
+	<table class="table table-striped" style="font-size:14px;width:auto;">
 		<tr style="font-weight:bold;">
 			<td>NAME</td>
 			<td>SELLER</td>

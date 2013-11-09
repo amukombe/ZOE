@@ -1,5 +1,5 @@
 <div class="depot_form" >
-
+<% @page_title='Available Users' %>
   <% @page_title = 'user | list' %>
 
   <div>
@@ -12,16 +12,18 @@
   <fieldset>
     <h1>Listing users</h1>
 
-    <table cellpadding="2">
+    <table class="table table-striped" style="font-size:14px;width:auto;">
       <tr style="font-weight:bold;">
-        <td>Name</td>
+        <td>Names</td>
+        <td>Mobile</td>
         <td>Role</td>
         <td>Action</td>
       </tr>
 
     <% @users.each do |user| %>
       <tr style="background:#ccc;">
-        <td><%= user.name %></td>
+        <td><%= user.firstname + ' ' + user.lastname %></td>
+        <td><%= user.phone_no %></td>
         <td><%= user.role.title %></td>
         <td><%= link_to 'Show', user %> |
           <%= link_to 'Edit', edit_user_path(user) %> |

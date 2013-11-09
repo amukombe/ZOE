@@ -1,8 +1,19 @@
+<% @page_title = 'show user' %>
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Username:</b>
-  <%= @user.name %>
+  <b>Names:</b>
+  <%= @user.firstname + ' ' + @user.lastname %>
+</p>
+
+<p>
+  <b>Address:</b>
+  <%= @user.address %>
+</p>
+
+<p>
+  <b>Mobile:</b>
+  <%= @user.phone_no %>
 </p>
 
 <p>

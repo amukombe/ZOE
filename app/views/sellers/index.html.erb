@@ -1,14 +1,16 @@
-<div>
+<div style="margin-top:10px;">
+<% @page_title='Rgistered sellers' %>
     <%= pluralize(@sellers.size, "seller") %> available
-    <%= link_to 'New Seller', new_seller_path %>
+    <%= link_to 'New Seller', new_seller_path, :class=>"btn btn-small btn-info" %>
   </div>
 <h3>Listing sellers</h3>
 
-<table cellpadding="2" cellspacing="2">
+<table class="table table-striped" style="font-size:14px;width:auto;">
   <tr>
     <th>Name</th>
     <th>Address</th>
     <th>Url</th>
+    <th>Status</th>
     <th>Action</th>
   </tr>
 
@@ -17,9 +19,17 @@
     <td><%= seller.name %></td>
     <td><%= seller.address %></td>
     <td><%= seller.url %></td>
+    <td style="color:green;"><%= seller.enabled ? 'Enabled' : 'Disabled' %> 
+         
+    </td>
     <td><%= link_to 'Show', seller %> |
         <%= link_to 'Edit', edit_seller_path(seller) %> |
-        <%= link_to 'Destroy', seller, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%= link_to 'Destroy', seller, method: :delete, data: { confirm: 'Are you sure?' } %> |
+        <% if seller.enabled %>
+        <%= link_to 'Disable', {:action=>'enable', :id=>seller.id}, :confirm=>'Are you sure you want to disable seller?', :style=>"color:red;" %>
+      <% else %>
+        <%= link_to 'Enable', {:action=>'disable', :id=>seller.id}, :confirm=>'Are you sure you want to enable seller?', :style=>"color:red;" %>
+      <%end%>
     </td>
   </tr>
 <% end %>

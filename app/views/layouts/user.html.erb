@@ -6,42 +6,160 @@
         <%=stylesheet_link_tag('scaffolds', :media =>'all')%>
         <%= stylesheet_link_tag('depot', :media => 'all') %>
         <%= stylesheet_link_tag    "application", :media => "all" %>
+        <%=stylesheet_link_tag('bootstrap-responsive', :media =>'all')%>
+        <%=stylesheet_link_tag('bootstrap-responsive.min', :media =>'all')%>
+        <%=stylesheet_link_tag('bootstrap', :media =>'all')%>
+        <%=stylesheet_link_tag('bootstrap.min', :media =>'all')%>
+
         <%= javascript_include_tag "application" %>
+        <%= javascript_include_tag "jquery" %>
   		<%= csrf_meta_tags %>
+  		<%=javascript_include_tag('bootstrap')%>
+        <%=javascript_include_tag('bootstrap.min')%>
+
+        <!-- Start WOWSlider.com HEAD section -->
+        <%= stylesheet_link_tag('style', :media => 'all') %>
+        <%= stylesheet_link_tag('style.mod', :media => 'all') %>
+
+        <%= javascript_include_tag "script" %>
+        <%= javascript_include_tag "wowslider" %>
+        <%= javascript_include_tag "wowslider.mod" %>
+        <!-- End WOWSlider.com HEAD section -->
+
+        <!-- function to print order -->
+           <script type="text/javascript">     
+                function PrintDiv() {    
+                   var divToPrint = document.getElementById('divToPrint');
+                   var popupWin = window.open('', '_blank', 'width=500,height=500');
+                   popupWin.document.open();
+                   popupWin.document.write('<html><body onload="window.print()">' + divToPrint.innerHTML + '</html>');
+                    popupWin.document.close();
+                        }
+             </script>     
+
+        <!-- end of print function -->
     </head>
     <body id="store">                             
 		
-		<div id="wrapper">
-			<div id="banner" >
-				<%= image_tag("logo.png") %>
-				<%= @page_title || "online ordering" %>
-			</div>
-			<!--<div id="columns" > -->
-				<div id="side" >
-								
-					<%= link_to('Home', {:controller=>'main', :action=>'index'}) %><br />
-					<a href="http://www..../faq" >Questions</a><br />
-					<a href="http://www..../news" >News</a><br />
-					<a href="http://www..../contact" >Contact</a><br />
+		<div class="container" style="width: 1200px;
+	margin: auto;
+	background: #141;">
+			<div class="row-fluid" style="background: #6CF;">
+					<div class="span3">
+					<%= image_tag("logo2.png") %>
+					</div>
+					<div class="span9">
 
-					<% if session[:user_id] %>
-						<br />
-							<%= link_to 'Orders' , orders_path %><br />
-							<%= link_to 'Products' , products_path %><br />
-							<%= link_to 'Users' , users_path %><br />
-							<%= link_to 'Sellers' , sellers_path %><br />
+<!-- Start WOWSlider.com BODY section id=wowslider-container1 -->
+<div style="width:800px;height:250px;margin-left:90px;">
+
+    <div id="wowslider-container1">
+    <div class="ws_images"><ul>
+<li><%= image_tag('images/img1.jpg', :alt=>'img1', :title=>'Have the best of your choice at Mabira', :id=>'wows1_0')%></li>
+<li><%= image_tag('images/img2.jpg', :alt=>'img2', :title=>'You can have all your desires at Mabira', :id=>'wows1_1')%></li>
+<li><%= image_tag('images/img3.jpg', :alt=>'img3', :title=>'Quench your thirst at mabira', :id=>'wows1_2')%></li>
+<li><%= image_tag('images/img4.jpg', :alt=>'img4', :title=>'We believe in the best services', :id=>'wows1_3')%></li>
+<li><%= image_tag('images/img5.jpg', :alt=>'img5', :title=>'Pick at your own choice', :id=>'wows1_4')%></li>
+<li><%= image_tag('images/img6.jpg', :alt=>'img6', :title=>'Fresh vegetables available', :id=>'wows1_5')%></li>
+<li><%= image_tag('images/img7.jpg', :alt=>'img7', :title=>'It is fast,', :id=>'wows1_6')%></li>
+<li><%= image_tag('images/img8.jpg', :alt=>'img8', :title=>'Reliable', :id=>'wows1_7')%></li>
+<li><%= image_tag('images/img9.jpg', :alt=>'img9', :title=>'and Secure at Mabira', :id=>'wows1_8')%></li>
+</ul></div>
+
+<div class="ws_bullets"><div>
+<%= link_to image_tag('images/img1.jpg') + '1' %>
+<%= link_to image_tag('images/img2.jpg') + '2' %>
+<%= link_to image_tag('images/img3.jpg') + '3' %>
+<%= link_to image_tag('images/img4.jpg') + '4' %>
+<%= link_to image_tag('images/img5.jpg') + '5' %>
+<%= link_to image_tag('images/img6.jpg') + '6' %>
+<%= link_to image_tag('images/img7.jpg') + '7' %>
+<%= link_to image_tag('images/img8.jpg') + '8' %>
+<%= link_to image_tag('images/img9.jpg') + '9' %>
+</div></div>
+    </div>
+    
+    <%= javascript_include_tag "wowslider" %>
+    <%= javascript_include_tag "script" %>
+</div>
+<!-- End WOWSlider.com BODY section -->
+
+					</div>
+				</div>
+
+<div class="row_fluid">
+<div style="color:#fff; float:right;font-weight:bold;padding-right:10px;margin-top:5px;">
+<% if !session[:user_id].blank? %>
+    
+        Hi <%= session[:firstname] %> 
+        <%= session[:lastname] %>
+        <%= link_to(' Logout' , {:controller=>'sessions',:action=>'destroy'}, :class=>'btn btn-info', :style=>'border-radius:0px;') %>
+        <%else%>
+        <%= link_to(' Login' , {:controller=>'access',:action=>'login'}, :class=>'btn btn-info', :style=>'border-radius:0px;')%>
+        <% end %>
+    </div>
+ </div>
+
+			<div class="navbar">
+                <div class="navbar-inner" style="background:none;border:0px;">
+                    <div class="container">
+                        <ul class="nav">
+                            <li  class="<%='active' if params[:controller] == 'main' && params[:action]=='index'%>">
+                            <%= link_to("Order Now", :controller=>'main', :action=>'index')%></li>
+                            <li  class="<%='active' if params[:controller] == 'main' && params[:action]=='aboutus'%>">
+                            <%= link_to("About us", :controller=>'main', :action=>'aboutus')%></li>
+
+                            <li  class="<%='active' if params[:controller] == 'main' && params[:action]=='contactus'%>">
+                            <%= link_to("Contact", :controller=>'line_items', :action=>'index')%></li>
+
+                            <li  class="<%='active' if params[:controller] == 'main' && params[:action]=='services'%>">
+                            <%= link_to("Services" )%></li>
+                            <li><%= link_to("News")%>                
+                        </ul>
+                    </div>
+	                </div>
+	            </div>
+			<div class="row-fluid">
+				<header class="span3" style="padding-left:20px;">
+						
 							<br />
-							<%= link_to 'Logout' , :controller=>'sessions',:action=>'destroy' %>
-						<%else%>
-							<%= link_to 'Login' , :controller=>'access',:action=>'login'%>
-						<% end %>
-				</div>
-				<div id="main" >
+								<% if !session[:user_id].blank? &&  session[:role]== "Admin" %>
+
+                                <%= link_to image_tag("arrow.gif") + ' INBOX ' , orders_path, :style=>"color:#fff;" %><b style="color:#fff;">(<%= @unread.size %>)</b><br />
+                                <%= link_to image_tag("arrow.gif") + ' Submitted orders' , items_admin_view_path, :style=>"color:#fff;" %><br />
+                                <%= link_to image_tag("arrow.gif") + ' Manage Products' , products_path, :style=>"color:#fff;" %><br />
+                                <%= link_to image_tag("arrow.gif") + ' Manage Users' , users_path, :style=>"color:#fff;" %><br />
+                                <%= link_to image_tag("arrow.gif") + ' Manage Sellers' , sellers_path, :style=>"color:#fff;" %><br />
+                                <%= link_to image_tag("arrow.gif") + ' Manage Branches' , branches_path, :style=>"color:#fff;" %><br />
+                                <%= link_to image_tag("arrow.gif") + ' Branch Managers' , managers_path, :style=>"color:#fff;" %><br />
+                                <% elsif !session[:user_id].blank? && session[:role] == "Manager"
+                                     %>
+                                     <%= link_to image_tag("arrow.gif") + ' INBOX' , items_path, :style=>"color:#fff;" %> <b style="color:#fff;">(<%= @total_orders.size %>)</b>
+                                     <br />
+                                     
+                                <% end %>
+                                <br />
+                                <header class="span12" style="margin-top:10px;">
+                                <h3 style="color:#fff;margin-top:10px;font-size:18px;">
+                                Partners
+                                </h3>
+                                <a href="http://mtn.co.ug/" target="_blank" ><%= image_tag('partners/MTNlogo.gif', :height=>80, :width=>80 )%></a>
+                                <a href="http://bendaassociates.com/" target="_blank" ><%= image_tag('partners/Benda logo1.png')%></a>
+                            </header>
+				</header>
+				<header class="span9" style="background:#fff;margin-bottom:3px;padding-left:10px;">
 					<%= yield %>
+				</header>
 				</div>
-				<div id="footer">
-					Copyright becka
-				</div>
+
+				<footer>
+                    
+                        <div style="background-color:#333;color:#fff;">
+                            Copyright becka
+                        </div>
+                        
+                                        
+                </footer>
 			</div>
 		<!--</div> -->
     </body>

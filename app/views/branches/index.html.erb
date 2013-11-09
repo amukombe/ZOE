@@ -1,0 +1,28 @@
+<div style="margin-top:10px;">
+<% @page_title='Supermarket Branches' %>
+    <%= pluralize(@branches.size, "seller") %> available
+    <%= link_to 'New Branch', new_branch_path, :class=>"btn btn-small btn-info" %>
+  </div>
+<h3>Listing branches</h3>
+
+<table class="table table-striped" style="font-size:14px;width:auto;">
+  <tr>
+    <th>Supermarket</th>
+    <th>Branch name</th>
+    <th>Address</th>
+    <th>Action</th>
+  </tr>
+
+<% @branches.each do |branch| %>
+  <tr style="background:#ccc;">
+    <td><%= branch.seller.name %></td>
+    <td><%= branch.branch_name %> </td>
+    <td><%= branch.address %></td>
+    <td>
+    <%= link_to 'Show', branch %> | 
+    <%= link_to 'Edit', edit_branch_path(branch) %> | 
+      <%= link_to 'Destroy', branch, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+<p><%= will_paginate @branches %></p>

@@ -10,8 +10,16 @@
       </ul>
     </div>
   <% end %>
-
+  <div>
+    <%= f.hidden_field(:order_id, :value=>@order.id) %>
+  </div>
+  <div>
+    <%= f.hidden_field(:seller_id, :value=>@line_items.product.seller.id) %>
+  </div>
+  <div>
+    <%= f.hidden_field(:branch_id, :value=>@order.branch_id) %>
+  </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= submit_tag 'submit order', :class=>'btn btn-medium btn-info' %>
   </div>
 <% end %>

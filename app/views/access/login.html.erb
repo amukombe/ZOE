@@ -6,12 +6,13 @@
 		<%= notice %>
 		</div>
 	<% end %>
+
+			<h3>Please Log In</h3>
 	<%= form_tag(:controller=>'access',:action=>'create') do %>
 		<fieldset>
-			<legend>Please Log In</legend>
 			
 			<div>
-				<label for="name" >Name:</label>
+				<label for="name" >Username:</label>
 				<%= text_field_tag :name %>
 			</div>
 			
