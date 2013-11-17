@@ -1,5 +1,16 @@
 Supermarket::Application.routes.draw do
   
+  resources :adverts
+
+
+  resources :news
+
+
+  resources :comments
+
+
+  get "news/index"
+
   resources :branches
 
 

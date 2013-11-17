@@ -1,4 +1,5 @@
 <% @page_title = 'Available | products' %>
+
 <% if notice %>
 <p id="notice" ><%= notice %></p>
 <% end %>
@@ -7,16 +8,19 @@
 click on every item you want to buy
 <h3 style="margin-bottom:10px; color:green; font-weight:bold;" ><%= @catalog.name %> Catalog
 </h3>
-<div style="width:920px;clear:both;height:480px;">
+<div class="span12">
 	<% @products.each do |product| %>
 
-		<div class="manage-supermarkets">
-			<%= image_tag(product.image_url, :width=>40, :height=>40) %><br />
-			<%= product.title %><br />
-			<%=sanitize product.description %><br />
+		<!--<div class="manage-supermarkets">-->
+		<div class="span3" style="height:250px;margin:0px;margin-left:10px;">
+			<div class="hero-unit" style="font-size:12px;padding:0px;text-align:center;border:1px solid #ccc;height:240px;">
+			<p class="btn btn-success" style="width:180px;margin-bottom:2px;"><%= product.title %></p>
+			<%= image_tag(product.image_url, :width=>90, :height=>80) %><br />
+			<p><%=sanitize product.description %></p>
 
 			<%= sprintf("Ush %0.0f", product.price) %>
 			<%= button_to 'Add to Cart' , line_items_path(:product_id => product), :class=>'button-class' %>
+			</div>
 		</div>
 	<% end %>
 </div>

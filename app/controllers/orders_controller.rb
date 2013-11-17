@@ -97,18 +97,7 @@ class OrdersController < ApplicationController
         # "<Account>#{@transaction.transactor_pin_no}</Account>"+
     "<AccountProviderCode>MTN_UGANDA</AccountProviderCode><Narrative> Complete order from #{@order.branch_id}</Narrative>"+
     "</Request></AutoCreate>"
-      headers = {
-                           
-           'Content-Type' => 'text/xml',
-           'Content-transfer-encoding' => 'text'
-          }
-       yoPaymentStatusCode = make_http_post(url, post_xml, headers)
-       puts "status code============================================"
-           puts yoPaymentStatusCode
-         puts "status code============================================"
-  #  ******* end of sending request to yo! payments server ******************
-      message=getTransactionStatus(yoPaymentStatusCode )
-
+    make_http_request(url, post_xml)
 
     respond_to do |format|
       if @order.save
@@ -125,6 +114,28 @@ class OrdersController < ApplicationController
     end
   end
 
+  def make_http_request(url, post_xml)
+    require 'net/http'
+    require 'openssl' # needed for windows environment
+    #require 'xml/libxml' 
+    require 'hpricot'
+    require 'open-uri'
+    array_order = []
+    http = Net::HTTP.new(url.host, url.port)
+       if url.scheme == 'https'
+        require 'net/https'
+        http.use_ssl = true
+              http.verify_mode = OpenSSL::SSL::VERIFY_NONE   # needed for windows environment
+      end
+    post_xml = http.post(url.path, post_xml)
+    puts post_xml
+
+    #parser = XML::Parser.new
+    #parser.string = xml_string
+    doc = Hpricot.XML("#{url}, #{post_xml}")
+    array_order
+
+  end
   # PUT /orders/1
   # PUT /orders/1.json
   def update
@@ -167,84 +178,5 @@ class OrdersController < ApplicationController
       flash[:notice] = "failed to submit order"
     end
   end
-
-  #xml code sending information to yo payments
-  def make_http_post(url, data,headers)
-    # inherit the required http classes
-    require 'net/http'
-    http = Net::HTTP.new(url.host, url.port)
-      if url.scheme == 'https'
-        require 'net/https'
-        require 'openssl' # needed for windows environment
-        #require 'libxml' 
-        #require 'xml/messages'
-        http.use_ssl = true
-              http.verify_mode = OpenSSL::SSL::VERIFY_NONE   # needed for windows environment
-      end
-
-    # send the request
-    resp, data = http.post(url.path, data,headers)
-
-    #resp, data = Net::HTTP.post(url,data,header)
-    puts 'Response from Yo! Payments ................................'
-    puts data    
-    #render :xml => data
   
-    # Installation http://stackoverflow.com/questions/2915788/libxml-ruby-failed-to-load-at-x86-64
-    # install a libxml-ruby version for the respective Ruby version
-    parser = LibXML::XML::Parser.file(data)
-    doc = parser.parse
-    yoPaymentStatusCode=""
-
-    doc.root.each do |node|
-       response_nodes = node.children
-       response_nodes.each do |response|
-     if response.name == "TransactionReference"
-      @transaction.transaction_reference = response.content
-     elsif response.name == "TransactionStatus"
-      @transaction.transaction_status = response.content
-                 elsif response.name == "StatusCode"     
-                  
-                  yoPaymentStatusCode=response.content
-    #  yoPaymentStatusCode = yoPaymentStatusCode.to_i
-     end
-       end
-    end
-    
-    return yoPaymentStatusCode
-
-  end
-  #ends here
-  #yo uganda status code
-  def getTransactionStatus(statusCode)
-        returnMessage=""
-  if statusCode=="0"
-          returnMessage="Transaction was successful"
-        elsif statusCode=="1"
-    returnMessage="Transaction was successful but pending due to server processing"
-  elsif statusCode=="2"
-    returnMessage="The transaction failed "
-  elsif statusCode=="3"
-    returnMessage="The transaction failed but we encountered an error updating the transaction state to mark the transaction as FAILED"
-  elsif statusCode=="4"
-    returnMessage="The transaction succeeded but we encountered an error updatingthe transaction state to mark the transaction as successful."
-  elsif statusCode=="5"
-    returnMessage="Network error. Please contact support services"
-  elsif statusCode=="6"
-    returnMessage="The transaction succeeded. However, because of an internal problem, your balance has not yet been updated to reflect the transaction."
-  elsif statusCode=="7"
-    returnMessage="Unsupported transaction type transaction failed "
-  elsif statusCode=="8"
-    returnMessage="Unsupported transaction type ''.processed but there was a problem marking the transaction as FAILED."
-  elsif statusCode=="-8"
-    returnMessage="Duplicate transaction!. Please vary your submission parameters"
-  elsif statusCode=="-4"
-    returnMessage="Insufficient funds on Account"
-  else
-    returnMessage="please try again,check for missing fields, if it fails, check with the administrator"
-        end
-        
-        return returnMessage  
-  end
- #ends here
 end

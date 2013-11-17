@@ -1,0 +1,33 @@
+<div class="depot_form" >
+  <%= form_for(@news) do |f| %>
+    <% if @news.errors.any? %>
+      <div id="error_explanation">
+        <h3><%= pluralize(@news.errors.count, "error") %> prohibited this news from being saved:</h3>
+
+        <ul>
+        <% @news.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    
+    <div>
+      <%= f.label :news_title %>
+    </div>
+    <div>
+      <%= f.text_field :title %>
+    </div>
+
+    <div>
+      <%= f.label :description %>
+    </div>
+    <div>
+      <%= f.text_area :description, :rows=>6 %>
+    </div>
+
+    <div class="actions">
+      <%= submit_tag 'submit news', :class=>'btn btn-medium btn-info' %>
+    </div>
+  <% end %>
+</div>

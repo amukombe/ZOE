@@ -4,6 +4,8 @@ class CreateSellers < ActiveRecord::Migration
       t.string :name
       t.string :address
       t.string :url
+      t.string :link
+      t.boolean :enabled, :default => true
 
       t.timestamps
     end

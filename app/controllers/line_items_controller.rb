@@ -1,6 +1,6 @@
 class LineItemsController < ApplicationController
   layout 'admin'
-  skip_before_filter :authorize, :only => :create
+  before_filter :confirm_logged_in_admin, :except => [:new, :create]
   # GET /line_items
   # GET /line_items.json
   def index

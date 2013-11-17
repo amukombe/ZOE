@@ -1,0 +1,23 @@
+<%@page_title='Adverts & Offers'%>
+
+<div style="clear:both;">
+	<% @adverts.each do |advert|%>
+		<div style="height:210px;width:210px; float:left;">
+			<div class="hero-unit" style="padding:0px;background:#9C9;width:180px;margin-top:5px;float:left;margin-right:20px;">
+				<p class="btn" style="background:#09F;color:#fff;width:155px;"><%= advert.title %></p>
+				<p style="padding:5px;">
+				<% if advert.description.length > 100 %>
+					<%= truncate(advert.description, :length=>100, :omission=>'...') %>
+					<%= link_to_function 'Read More', "$(this).parent().html('#{escape_javascript advert.description}')" %>
+				<% else %>
+					<%= advert.description %>
+				<%end%>	
+			
+				</p>
+			</div>
+		</div>
+	<%end%>
+</div>
+<div style="clear:both;">
+<p><%= will_paginate @adverts %></p>
+</div>

@@ -23,6 +23,9 @@ end
 gem 'jquery-rails'
 
 gem 'will_paginate', '>= 3.0.pre'
+
+gem "libxml-ruby", "~> 2.7.0"
+gem "hpricot", "~> 0.8.6"
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

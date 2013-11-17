@@ -6,6 +6,12 @@ class CreateManagers < ActiveRecord::Migration
       t.string :salt
       t.integer :role_id
       t.integer :seller_id
+      t.integer :branch_id
+      t.string  :firstname
+      t.string  :lastname
+      t.string  :email
+      t.string  :phone_no
+      t.string  :address
 
       t.timestamps
     end

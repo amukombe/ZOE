@@ -1,0 +1,46 @@
+ <div class="depot_form" >
+  <%= form_for(@advert) do |f| %>
+    <% if @advert.errors.any? %>
+      <div id="error_explanation">
+        <h3><%= pluralize(@advert.errors.count, "error") %> prohibited this advert from being saved:</h3>
+
+        <ul>
+        <% @advert.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div>
+      <%= f.label :advert_owner %>
+    </div>
+    <div>
+      <%= f.text_field :owner %>
+    </div>
+
+    <div>
+      <%=  f.label :title %>
+    </div>
+    <div>
+      <%= f.text_field :title %>
+    </div>
+
+    <div>
+      <%= f.label :Advert %>
+    </div>
+    <div>
+      <%= f.text_area :description, :rows=>6 %>
+    </div>
+
+    <div>
+      <%= f.label 'Image url (optional)' %>
+    </div>
+    <div>
+      <%= f.text_field :image_url %>
+    </div>
+
+    <div class="actions">
+      <%= submit_tag 'Submit Advert', :class=>'btn btn-info' %>
+    </div>
+  <% end %>
+</div>

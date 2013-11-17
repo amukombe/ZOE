@@ -1,0 +1,85 @@
+<%@page_title='contacts'%>
+
+<div class="span8" style="padding-top:20px;font-weight:bold;">
+		<div class="span12" style="font-size:14px;padding:5px;margin-top:10px;">
+			MABIRA PROJECT HEAD OFFICES
+		</div>
+		<div class="hero-unit" style="height:60px;">
+			<div style="font-size:12px;" class="span6">
+				<p>MABIRA Najjanankumbi</p>
+				<p>Wamala Road</p>
+				<p>P.O.BOX 6046 Kampala Uganda</p>
+
+			</div>
+			<div style="font-size:14px;color:red;text-align:right" class="span6">
+				<p>+256-783-750-588</p>
+				<p>+256-414-581-111</p>
+			</div>
+		</div>
+		<div class="span12" style="font-size:14px;padding:5px;margin-top:10px;">
+			ALTERNATE CONTACTS
+		</div>
+		<div class="hero-unit" style="height:120px;">
+			<div style="font-size:12px;" class="span6">
+				<p>Systems Management</p>
+				<p>Alternate Tel </p>
+				<p>Email</p>
+				<p>Sales Management</p>
+				<p>Alternate Tel</p>
+				<p>Email</p>
+
+			</div>
+			<div style="font-size:14px;color:red;text-align:right" class="span6">
+				<p>+256-706-671-888</p>
+				<p>+256-775-084-688</p>
+				<p><%= mail_to text="amukombe56@gmail.com" %></p>
+				<p>+256-701-261-756</p>
+				<p>+256-774-140-060</p>
+				<p><%=mail_to text="wanyamajosephjuma@gmail.com" %></p>
+			</div>
+		</div>
+</div>
+<div class="span4" style="padding-top:20px;">
+		<div class="span11"  style="float:right;margin-right:5px;">
+			<div class="hero-unit"  style="border:1px solid #ccc;padding:0px;">
+				<p class="btn" style="width:230px;border-radius:0px;border:none;border-bottom:1px solid #ccc;">comments</p>	
+				<marquee direction="up" scrollamount="1" onmouseover="this.stop();" onmouseout="this.start();" scrolldelay="0" height="190" style="padding:5px;padding-top:0px;font-size:13px;">
+					
+					<% @com.each do |com|%>
+						<p style="text-align:center;font-weight:bold;color:green;">
+							<%= com.name %>
+						</p>
+						<% if com.description.length > 100 %>
+							<%= truncate(com.description, :length=>100, :omission=>'...') %>
+							<%= link_to_function 'Read More', "$(this).parent().html('#{escape_javascript com.description}')" %>
+						<% else %>
+							<%= com.description %>
+						<%end%>	
+					<%end%>
+					
+        		</marquee>
+			</div>
+		</div>
+		<div class="span11" style="float:right;margin-right:5px;">
+			<div class="hero-unit" style="border:1px solid #ccc;padding:0px;font-size:14px;">
+				<p class="btn" style="width:230px;border-radius:0px;border:none;border-bottom:1px solid #ccc;">Post comment</p>	
+				<div style="color:green;font-size:12px;">
+			        <%= notice %>
+			     </div>
+				<div style="padding-left:10px;">
+					<%= form_for(@comments) do |f| %>
+						<div>
+							Names<br />
+							<%= f.text_field :name %><br />
+							Email<br />
+							<%= f.text_field :email %><br />
+							Comment<br />
+							<%= f.text_area :description, :rows=>4 %><br />
+							<%= check_box_tag '' %> Send me a copy<br />
+							<%= submit_tag 'submit', :class=>'btn btn-small btn-info' %>
+						</div>
+					<%end%>
+				</div>
+			</div>
+		</div>
+</div>

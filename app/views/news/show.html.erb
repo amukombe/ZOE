@@ -1,0 +1,16 @@
+<% @page_title = 'News & events | show' %>
+<p id="notice"><%= notice %></p>
+<p>
+	<b>Title:</b>
+	<u><%= @news.title %></u>
+</p>
+
+<p>
+	<b>Description</b>
+</p>
+<p style="width:400px;">
+	<%= @news.description %>
+</p>
+
+<%= link_to 'Edit', edit_news_path(@news) %> |
+<%= link_to 'Back', news_index_path %>

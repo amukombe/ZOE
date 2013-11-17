@@ -1,0 +1,29 @@
+<%@page_title='Advert & Offers available'%>
+<div>
+  <%= link_to 'New Advert', new_advert_path %>
+</div>
+<table  class="table table-striped" style="font-size:14px;width:auto;">
+  <tr>
+    <th>Title</th>
+    <th>Owner</th>
+    <th>Uploaded Time</th>
+    <th>Action</th>
+  </tr>
+
+<% @adverts.each do |advert| %>
+  <tr style="background:#ccc;">
+    <td><%= advert.title %></td>
+    <td><%= advert.owner %></td>
+    <td><%= advert.created_at %></td>
+    <td>
+      <%= link_to 'Show', advert %> |
+      <%= link_to 'Edit', edit_advert_path(advert) %> |
+      <%= link_to 'Destroy', advert, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+

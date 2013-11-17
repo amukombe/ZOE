@@ -1,0 +1,21 @@
+<%@page_title='show advert'%>
+<p id="notice"><%= notice %></p>
+<p>
+	<b>Owner </b>
+	<%= @advert.owner %>
+</p>
+
+<p>
+	<b>Title </b>
+	<%= @advert.title %>
+</p>
+
+<p>
+	<b>Decription </b>	
+</p>
+<p style="width:400px;">
+	<%= @advert.description %>
+</p>
+
+<%= link_to 'Edit', edit_advert_path(@advert) %> |
+<%= link_to 'Back', adverts_path %>

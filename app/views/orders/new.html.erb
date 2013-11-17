@@ -1,7 +1,11 @@
 <% @page_title = 'Complete Order' %>
 <div class="depot_form" >
-	<h3>Please Enter Your Details</h3>
+	<h4>Please Enter Your Details</h4>
 	<fieldset>
+		
+			<div style="color:green;font-weight:bold;">
+			<%= @line_item.product.seller.name %>
+			</div>
 		
 		<%= render 'form' %>
 	</fieldset>

@@ -39,7 +39,7 @@
 
         <!-- end of print function -->
     </head>
-    <body id="store">                             
+    <body>                             
 		
 		<div class="container" style="width: 1200px;
 	margin: auto;
@@ -109,12 +109,15 @@
                             <li  class="<%='active' if params[:controller] == 'main' && params[:action]=='aboutus'%>">
                             <%= link_to("About us", :controller=>'main', :action=>'aboutus')%></li>
 
-                            <li  class="<%='active' if params[:controller] == 'main' && params[:action]=='contactus'%>">
-                            <%= link_to("Contact", :controller=>'line_items', :action=>'index')%></li>
+                            <li  class="<%='active' if params[:controller] == 'main' && params[:action]=='contact'%>">
+                            <%= link_to("Contact", :controller=>'main', :action=>'contact')%></li>
 
                             <li  class="<%='active' if params[:controller] == 'main' && params[:action]=='services'%>">
                             <%= link_to("Services" )%></li>
-                            <li><%= link_to("News")%>                
+                            <li  class="<%='active' if params[:controller] == 'main' && params[:action]=='news'%>">
+                            <%= link_to("News & Events", :controller=>'main', :action=>'news')%></li>
+                            <li  class="<%='active' if params[:controller] == 'main' && params[:action]=='adverts'%>">
+                            <%= link_to("Adverts & Offers", :controller=>'main', :action=>'adverts')%></li>               
                         </ul>
                     </div>
 	                </div>
@@ -132,6 +135,8 @@
                                 <%= link_to image_tag("arrow.gif") + ' Manage Sellers' , sellers_path, :style=>"color:#fff;" %><br />
                                 <%= link_to image_tag("arrow.gif") + ' Manage Branches' , branches_path, :style=>"color:#fff;" %><br />
                                 <%= link_to image_tag("arrow.gif") + ' Branch Managers' , managers_path, :style=>"color:#fff;" %><br />
+                                <%= link_to image_tag("arrow.gif") + ' News & Events' , {:controller=>'news', :action=>'index'}, :style=>"color:#fff;" %><br />
+                                <%= link_to image_tag("arrow.gif") + ' Adverts & Offers' , {:controller=>'adverts', :action=>'index'}, :style=>"color:#fff;" %><br />
                                 <% elsif !session[:user_id].blank? && session[:role] == "Manager"
                                      %>
                                      <%= link_to image_tag("arrow.gif") + ' INBOX' , items_path, :style=>"color:#fff;" %> <b style="color:#fff;">(<%= @total_orders.size %>)</b>
@@ -139,13 +144,40 @@
                                      
                                 <% end %>
                                 <br />
-                                <header class="span12" style="margin-top:10px;">
-                                <h3 style="color:#fff;margin-top:10px;font-size:18px;">
-                                Partners
-                                </h3>
-                                <a href="http://mtn.co.ug/" target="_blank" ><%= image_tag('partners/MTNlogo.gif', :height=>80, :width=>80 )%></a>
-                                <a href="http://bendaassociates.com/" target="_blank" ><%= image_tag('partners/Benda logo1.png')%></a>
+                                <header class="span12">
+                                    <div class="hero-unit"  style="padding:0px;background:none;color:#fff;">
+                                        <p class="btn btn-info" style="width:230px;text-align:left">News & Events</p>   
+                                        <marquee direction="up" scrollamount="1" onmouseover="this.stop();" onmouseout="this.start();" scrolldelay="0" height="80" style="padding:5px;padding-top:0px;font-size:13px;">
+                                            <%@com  = News.order('news.created_at')%>
+                                            <% @com.each do |com|%>
+                                                <p style="font-weight:bold;color:green;">
+                                                    <%= com.title %>
+                                                </p>
+                                                <% if com.description.length > 50 %>
+                                                    <%= truncate(com.description, :length=>50, :omission=>'...') %>
+                                                    <%= link_to 'Read More', {:controller=>'main', :action=>'news'} %>
+                                                <% else %>
+                                                    <%= com.description %>
+                                                <%end%> 
+                                            <%end%>
+                                            
+                                        </marquee>
+                                    </div>
+                                
                             </header>
+                            <header class="span12" style="margin-top:10px;">
+                                <p class="btn btn-info" style="width:230px;text-align:left;">
+                                Partners
+                                </p>
+                                <a href="http://mtn.co.ug/" target="_blank"  style="color:#fff;" >
+                                    <%= image_tag("arrow.gif") %> MTN Uganda
+                                    </a>
+                                <br />
+                                    <a href="http://bendaassociates.com/" target="_blank" style="color:#fff;" >
+                                        <%= image_tag("arrow.gif") %> Benda Associates
+                                    </a>
+                                <br />
+                        </header>
 				</header>
 				<header class="span9" style="background:#fff;margin-bottom:3px;padding-left:10px;">
 					<%= yield %>
